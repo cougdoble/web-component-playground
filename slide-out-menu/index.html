@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slide out menu vanila web component</title>
+    <script src="slide-out-menu.js"></script>
+</head>
+<body>
+    <slide-out-menu id="menu">
+        <h3 slot="title">Nav Menu</h3>
+        <a href="#">Menu Item One</a>
+        <a href="#">Menu Item Two</a>
+        <a href="#">Menu Item Three</a>
+    </slide-out-menu>
+    <div class="controls">
+        <button class="btn" data-action="open">Open Menu</button>
+        <button class="btn" data-action="close">Close Menu</button>
+    </div>
+    <script>
+        const $controls = document.querySelector(".controls");
+        const $menu = document.getElementById("menu");
+        $controls.addEventListener("click", (event) => {
+            switch(event.target.dataset.action) {
+                case "open":
+                    $menu.open = true;
+                    break;
+                case "close":
+                    $menu.open = false;
+                    break;
+            }
+        });
+        $menu.addEventListener("menu-opened", (e) => console.log("MENU OPENED!", e));
+        $menu.addEventListener("menu-closed", (e) => console.log("MENU CLOSED!", e));
+    </script>
+</body>
+</html>
